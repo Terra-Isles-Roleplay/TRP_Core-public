@@ -1,0 +1,1 @@
+TRPCore.Client.Bridge = {}
