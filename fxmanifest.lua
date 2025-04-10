@@ -1,10 +1,10 @@
 fx_version 'cerulean'
 game 'gta5'
 
-name "TRPCadSync"
-description "TRPCore - TRP functions, & CAD Sync"
+name "TRPCore"
+description "TRPCore"
 author "Tristian R. / TRP Dev Team"
-version "2.0.1-beta"
+version "2.0.2-beta"
 
 lua54 'on'
 

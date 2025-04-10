@@ -39,7 +39,8 @@ function TRPCore.BubbleAPICall(APIType, APIcallpoint, APIMethod, APIData, APIPar
     local statusCode, responseBody, responseHeaders = PerformHttpRequestAwait(url, APIMethod, APIData, headers)
 
     -- Assign response data or a fallback message if the response body is empty
-    response.data = responseBody or "No response body available."
+    response.data = responseBody
+    if not responseBody then response.data = "No response body available." return end
     response.statuscode = statusCode -- Store the status code
     response.headers = responseHeaders -- Store the response headers
 
@@ -49,7 +50,7 @@ function TRPCore.BubbleAPICall(APIType, APIcallpoint, APIMethod, APIData, APIPar
         return response.data
     else
         -- Log an error message if the API call was unsuccessful
-        return TRPCore.Server.Logging.Print('[TRPCore-CADSYNC API] HTTP Status Code: ' .. tostring(response.statuscode) .. ' ' .. json.encode(response.data, {indent = true}), 'error')
+        return TRPlib.Print('[TRPCore-CADSYNC API] HTTP Status Code: ' .. tostring(response.statuscode) .. ' ' .. json.encode(response.data, {indent = true}), 'error')
     end
 end
 

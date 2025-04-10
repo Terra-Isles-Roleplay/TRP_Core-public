@@ -38,15 +38,16 @@ function TRPCore.Server.GetVehicle(key, value, returnArray)
                     vehicles[veh] = info
                 end
             else
-                local response = TRPlib.APICall(TRP.Server.Config.CADWorkflowURL, 'getvehicle', 'GET', '', {key = value})
-                table.insert(TRP.Server.API.Cache.Vehicles, response.response)
+                local response = TRPlib.APICall('GET', '', {key = value})
+                table.insert(TRPCore.Server.Data.Vehicles, response.response)
             end
         end
     else -- if users table is empty
-        local response = TRPlib.BubbleAPICall(TRPCoreConfig.Server.CADWorkflowURL, 'getvehicle', 'GET', '', {key = value})
-        if response then
-            table.insert(TRP.Server.API.Cache.Vehicles, response.response)
-        end
+        local response = TRPlib.BubbleAPICall('GET', '', {key = value})
+        ---@diagnostic disable-next-line: undefined-field, need-check-nil
+        local responseData = response.response
+        table.insert(TRPCore.Server.Data.Vehicles, responseData)
+
     end
     return vehicles
 end
