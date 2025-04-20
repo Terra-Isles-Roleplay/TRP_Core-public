@@ -20,6 +20,7 @@ if IsDuplicityVersion() then
     TRPCore.Server.Data.Civilians = {}
     TRPCore.Server.Data.Users = {}
     TRPCore.Server.Data.Files = {}
+    TRPCore.Server.Data.Weapons = {}
 
 elseif not IsDuplicityVersion() then
     TRPCore.Client = {}

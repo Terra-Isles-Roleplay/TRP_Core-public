@@ -15,20 +15,18 @@
 ---@param key string
 ---@param value string
 ---@param returnArray boolean
----@return weapons
-function TRP.Server.API.Cache.GetWeapon(key, value, returnArray)
-    if not key or not value then return TRP.Server.API.Cache.Users end
+---@return weapons|boolean
+function TRPCore.GetWeapon(key, value, returnArray)
+    if not key or not value then return TRPCore.Server.Data.Weapons end
     local keyTypes
     local weapons = {}
-    if TRP.Server.Config.CADVersion == 'v1' then
-        keyTypes = {id = "_id", registrationNumber = "Registration Number"}
-    elseif TRP.Server.Config.CADVersion == 'v2' then
-        --keyTypes = {id = "_id", CommunityName = "CommunityName", ShortName = "ShortName"}
-    end
+    
+    keyTypes = {id = "_id", registrationNumber = "Registration Number"}
+
     local findBy = keyTypes[key]
 
     if findBy then
-        for weapon, info in pairs(TRP.Server.API.Cache.CadInfo) do
+        for weapon, info in pairs(TRPCore.Server.Data.Weapons) do
             if info[findBy] == value then
                 if returnArray then
                     weapons[#weapons+1] = info
@@ -36,14 +34,14 @@ function TRP.Server.API.Cache.GetWeapon(key, value, returnArray)
                     weapons[weapon] = info
                 end
             else
-                local response = TRP.APICall(TRP.Server.Config.CADWorkflowURL, 'getweapon', 'GET', '', {key = value})
-                table.insert(TRP.Server.API.Cache.Users, response.response)
+                local response = TRPlib.BubbleAPICall('GET', 'wf', 'getWeapon', '', {key = value})
+                table.insert(TRPCore.Server.Data.Weapons, response.response)
             end
         end
     else -- if users table is empty
-        local response = TRP.APICall(TRP.Server.Config.CADWorkflowURL, 'getweapon', 'GET', '', {key = value})
+        local response = TRPlib.BubbleAPICall('GET', 'wf', 'getWeapon', '', {key = value})
         if response then
-            table.insert(TRP.Server.API.Cache.Users, response.response)
+            table.insert(TRPCore.Server.Data.Weapons, response.response)
         end
     end
     return weapons

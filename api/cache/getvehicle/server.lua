@@ -20,13 +20,7 @@ function TRPCore.Server.GetVehicle(key, value, returnArray)
     if not key or not value then return TRPCore.Server.Data.Vehicles end
     local keyTypes
     local vehicles = {}
-    if TRPCoreConfig.Server.CADVersion == 'v1' then
-        keyTypes = {id = "_id", vinNumber = "vin", plate = "plate"}
-    elseif TRPCoreConfig.Server.CADVersion == 'v2' then
-        --keyTypes = {id = "_id", CommunityName = "CommunityName", ShortName = "ShortName"}
-    else
-        --keyTypes = {id = "_id", CommunityName = "CommunityName", ShortName = "ShortName"}
-    end
+    keyTypes = {id = "_id", vinNumber = "vin", plate = "plate"}
     local findBy = keyTypes[key]
 
     if findBy then
@@ -38,12 +32,12 @@ function TRPCore.Server.GetVehicle(key, value, returnArray)
                     vehicles[veh] = info
                 end
             else
-                local response = TRPlib.APICall('GET', '', {key = value})
+                local response = TRPlib.BubbleAPICall('GET', 'wf', 'GetVehicle', '', {key = value})
                 table.insert(TRPCore.Server.Data.Vehicles, response.response)
             end
         end
     else -- if users table is empty
-        local response = TRPlib.BubbleAPICall('GET', '', {key = value})
+        local response = TRPlib.BubbleAPICall('GET', 'wf', 'GetVehicle', '', {key = value})
         ---@diagnostic disable-next-line: undefined-field, need-check-nil
         local responseData = response.response
         table.insert(TRPCore.Server.Data.Vehicles, responseData)

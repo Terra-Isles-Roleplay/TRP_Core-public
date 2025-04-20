@@ -10,16 +10,12 @@
 ---@param value string
 ---@param returnArray? boolean
 ---@alias communityInfo table -- Local table for Get Cad Information Function.
----@return communityInfo
+---@return communityInfo|boolean
 function TRPCore.Server.GetCadInfo(key, value, returnArray)
     if not key or not value then return TRPCore.Server.API.Cache.CadInfo end
     local keyTypes = {}
     local communityInfo = {}
-    if TRPCoreConfig.Server.CADVersion == 'v1' then
-        keyTypes = {id = "_id", communityName = "communityName"}
-    elseif TRPCoreConfig.Server.CADVersion == 'v2' then
-        --keyTypes = {id = "_id", CommunityName = "CommunityName", ShortName = "ShortName"}
-    end
+    keyTypes = {id = "_id", communityName = "communityName"}
     local findBy = keyTypes[key]
 
     if findBy then
@@ -31,12 +27,13 @@ function TRPCore.Server.GetCadInfo(key, value, returnArray)
                     communityInfo[community] = info
                 end
             else
-                local response = TRPCore.APICall(TRPCoreConfig.Server.CADWorkflowURL, 'getcadinfo', 'GET', '', {key = value})
+                local response = TRPlib.BubbleAPICall('GET', 'wf', 'GetInfo', '', {key = value})
+                if response == nil then return false end
                 table.insert(TRPCore.Server.API.Cache.CadInfo, response.response)
             end
         end
     else -- if users table is empty
-        local response = TRPCore.APICall(TRPCoreConfig.Server.CADWorkflowURL, 'getcadinfo', 'GET', '', {key = value})
+        local response = TRPlib.BubbleAPICall('GET', 'wf', 'GetInfo', '', {key = value})
         if response then
             table.insert(TRPCore.Server.Data.CadInfo, response.response)
         end

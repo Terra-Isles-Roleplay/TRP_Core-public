@@ -17,14 +17,12 @@
 ---@param value string
 ---@param returnArray boolean
 ---@alias civilians table
----@return civilians table
+---@return civilians|boolean
 function TRPCore.Server.GetCivilian(key, value, returnArray)
     local civilians = {}
     if not key or not value then return TRPCore.Server.API.Cache.Civilians end
     local keyTypes
-    if TRPCore.Server.Config.CADVersion == 'v1' then
-        keyTypes = {id = "_id", name = "full name"}
-    end
+    keyTypes = {id = "_id", name = "full name"}
     local findBy = keyTypes[key]
 
     if findBy then
