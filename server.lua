@@ -12,7 +12,7 @@
     Do not edit anything in this file unless you know what you are doing. Use Config Files!!!
 ]]
 Citizen.CreateThread(function()
-    if TRPCore.Server.Config.SyncCadOnStart then
+    if TRPCore.Server.SyncCadOnStart then
         local users = TRPCore.APICall(TRPCore.Server.Config.CADDataURL, 'user', 'GET', '')
         local data = users.response.results
         table.insert(TRPCore.Cache.Users, data)
