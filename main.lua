@@ -5,7 +5,7 @@ TRPCore = {}
 ---@type table
 TRPCoreConfig = {}
 
-TRPlib = exports["TRP_lib"]
+--TRPlib = exports["TRP_lib"]
 
 lib = exports["ox_lib"]
 
