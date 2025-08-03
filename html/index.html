@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>911 Call Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img id="logo" src="" alt="Logo">
+        <h1 class="header">Submit 911 Call</h1>
+        <form id="callForm">
+            <select id="callType" required></select>
+            <input type="text" id="name" placeholder="Caller's Name" required>
+            <input type="text" id="street" placeholder="Street/Address" required>
+            <input type="text" id="crossStreet" placeholder="Cross Street (Leave blank if none)">
+            <input type="text" id="zone" placeholder="Area">
+            <input type="text" id="postal" placeholder="Nearest Postal (Ex: 1005)" maxlength="4" required>
+            <textarea id="description" placeholder="Describe the situation..." required></textarea>
+            <button id="submitBtn">Submit</button>
+            <button id="closeBtn">Cancel</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
