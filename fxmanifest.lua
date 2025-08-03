@@ -18,10 +18,22 @@ shared_scripts{
 
 client_scripts{
 	'**/client.lua',
-	'**/**/client.lua'
+	'**/**/client.lua',
+	'**/c_main.lua',
+	'**/c_config.lua',
 }
 server_scripts{
 	'**/server.lua',
 	'**/**/server.lua',
-	'server.lua'
+	'server.lua',
+	'**/s_main.lua',
+	'**/s_config.lua'
 }
+
+files {
+	'html/index.html',
+	'html/style.css',
+	'html/script.js',
+}
+
+ui_page 'html/index.html'
