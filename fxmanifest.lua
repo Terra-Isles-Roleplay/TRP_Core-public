@@ -4,12 +4,16 @@ game 'gta5'
 name "TRPCore"
 description "TRPCore"
 author "Tristian R. / TRP Dev Team"
-version "2.0.2-beta"
+version "2.0.3-beta"
 
 lua54 'on'
 
+Dependencies {
+	'ox_lib'
+}
+
 shared_scripts{
-	'@ox_lib/init.lua',
+	'@ox_li/init.lua',
 	'@TRP_lib/init.lua',
 	'main.lua',
 	'**/shared.lua',

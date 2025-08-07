@@ -39,7 +39,7 @@ local resourceName =
 
 Citizen.CreateThread(function()
     TRPCore.Logging.S_Print(resourceName, 'normal')
-    if TRPCore.Server.Config.CADAuthKey == 'Not Set' or TRPCore.Server.Config.CADAuthKey == nil or TRPCore.Server.Config.CADAuthKey == 'nil' then
+    if TRPCoreConfig.Server.Cad == 'Not Set' or TRPCore.Server.Config.CADAuthKey == nil or TRPCore.Server.Config.CADAuthKey == 'nil' then
         TRPCore.Logging.S_Print('[TRP_Core] API KEY IS NOT SET, please set in Server Config.', 'error')
     end
     if TRPCore.Server.Config.CADURL == 'Not Set' or TRPCore.Server.Config.CADURL == nil or TRPCore.Server.Config.CADURL == 'nil' then

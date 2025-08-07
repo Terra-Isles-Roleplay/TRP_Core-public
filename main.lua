@@ -13,17 +13,12 @@ lib = exports["ox_lib"]
 
 if IsDuplicityVersion() then
     TRPCore.Server = {}
+    TRPCore.Server.Bridge = {}
     TRPCoreConfig.Server = {}
     TRPCore.Server.Data = {}
-    TRPCore.Server.Data.CadInfo = {}--CadInfo Data Table
-    TRPCore.Server.Data.Divisions = {}--Divisions Data Table
-    TRPCore.Server.Data.Civilians = {}
-    TRPCore.Server.Data.Users = {}
-    TRPCore.Server.Data.Files = {}
-    TRPCore.Server.Data.Weapons = {}
-
 elseif not IsDuplicityVersion() then
     TRPCore.Client = {}
+    TRPCore.Client.Bridge = {}
     TRPCoreConfig.Client = {}
 end
 

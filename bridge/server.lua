@@ -1,1 +1,0 @@
-TRPCore.Server.Bridge = {}
