@@ -31,6 +31,7 @@ server_scripts{
 	'**/**/server.lua',
 	'server.lua',
 	'**/s_main.lua',
+	'modules/**/server/*.lua',
 	'**/s_config.lua'
 }
 
