@@ -1,4 +1,4 @@
-function TRPCore.Client.GetClosestPlayer() 
+function TRPCore.Client.GetClosestPlayer()
     local Ped = PlayerPedId()
 
     for _, Player in ipairs(GetActivePlayers()) do

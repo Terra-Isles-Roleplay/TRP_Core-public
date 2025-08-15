@@ -17,20 +17,20 @@ local NDCore = exports["ND_Core"]
 
 -- EVENTS
 RegisterNetEvent("ND:updateMoney", function(account, newAmount)
-    print(("Money updated: %s = %s"):format(account, newAmount))
+    --print(("Money updated: %s = %s"):format(account, newAmount))
 end)
 
 RegisterNetEvent("ND:characterUnloaded", function()
-    print("Character has been unloaded")
+    --print("Character has been unloaded")
 end)
 
-RegisterNetEvent("ND:characterLoaded", function()
+RegisterNetEvent("ND:characterLoaded", function(Character)
     local data = NDCore:getPlayer()
-    print(("Character Loaded: %s %s"):format(data.firstname, data.lastname))
+    --print(("Character Loaded: %s %s"):format(data.firstname, data.lastname))
 end)
 
 RegisterNetEvent("ND:updateCharacter", function(charData)
-    print("Character updated:", json.encode(charData))
+    --print("Character updated:", json.encode(charData))
 end)
 
 -- FUNCTIONS
