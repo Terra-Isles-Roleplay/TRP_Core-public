@@ -17,6 +17,7 @@ shared_scripts{
 	'@TRP_lib/init.lua',
 	'main.lua',
 	'**/shared.lua',
+	'modules/**/shared/*.lua',
 	'**/**/shared.lua'
 }
 
@@ -25,6 +26,7 @@ client_scripts{
 	'**/**/client.lua',
 	'**/c_main.lua',
 	'**/c_config.lua',
+	'modules/**/clients/*.lua',
 }
 server_scripts{
 	'**/server.lua',
