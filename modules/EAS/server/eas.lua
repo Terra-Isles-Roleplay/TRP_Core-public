@@ -50,10 +50,10 @@ end
 local function isAllowed(source)
     if source == 0 then return true end
     local xPlayer = exports['ND_Core']:getPlayer(source)
-	print(("[EAS] Source: %s | Character ID: %s | Character Name: %s"):format(source, xPlayer.id, xPlayer.fullname)) 
+	--print(("[EAS] Source: %s | Character ID: %s | Character Name: %s"):format(source, xPlayer.id, xPlayer.fullname)) 
     if not xPlayer then return false end
     local job, grade = getJobInfo(xPlayer)
-	print(("[EAS] Job: %s | Grade: %s"):format(job, tonumber(grade)))
+	--print(("[EAS] Job: %s | Grade: %s"):format(job, tonumber(grade)))
     local rule = job and AllowedJobs[job]
     if rule == nil then return false end
     if rule == true then return true end
@@ -77,7 +77,7 @@ local function doWorkForPlayer(playerId, args, done)
 	
 	-- defensive check: if somehow invalid, cancel everything
     if not isValidAction(EASType) then
-        print(("[queue] Invalid action '%s' — cancelling run."):format(tostring(action)))
+        --print(("[queue] Invalid action '%s' — cancelling run."):format(tostring(action)))
         -- cancel whole queue
         playerQueue = {}
         processing = false
@@ -91,13 +91,13 @@ local function doWorkForPlayer(playerId, args, done)
     end
 
     -- Example logic:
-    print(('[EAS] Player %s (%s) Type: %s | Message: %s | Identifier: %s'):format(
+    --[[print(('[EAS] Player %s (%s) Type: %s | Message: %s | Identifier: %s'):format(
         playerId,
         GetPlayerName(playerId) or 'unknown',
         EASType,
         message,
 		GetPlayerIdentifierByType(playerId, 'license')
-    ))
+    ))]]
 	
 	if EASType == 'amber' or 'AMBER' then
 		alertNumber = '111'
@@ -116,7 +116,7 @@ local function doWorkForPlayer(playerId, args, done)
 	end
 	local pIdent = ('license:%s'):format(GetPlayerIdentifierByType(playerId, 'license'))
 	local playerData = exports['ND_Core']:getPlayer(playerId)
-    print(("Player Data for %s loaded. Their character id is %s"):format(playerId, playerData.id))
+    --print(("Player Data for %s loaded. Their character id is %s"):format(playerId, playerData.id))
     MySQL.single('SELECT * FROM nd_characters WHERE charid = ?', { playerData.id }, function(result)
         if not result then
             print(("[queue] No nd_characters entry found for character ID %s"):format(playerData.id))
@@ -128,7 +128,7 @@ local function doWorkForPlayer(playerId, args, done)
 
         local phone = tostring(characterData.phonenumber)
 
-        -- Debug: show some info
+        --[[ Debug: show some info
         print(("[queue] Player %s (%s) - Action: %s | Message: %s | Character Name: %s %s | Phone Number: %s"):format(
             playerId,
             GetPlayerName(playerId) or 'unknown',
@@ -144,7 +144,7 @@ local function doWorkForPlayer(playerId, args, done)
             alertNumber,
             phone,
             message
-        ))
+        ))]]
         exports.npwd:emitMessage({
                 senderNumber = alertNumber,
                 targetNumber = phone,
