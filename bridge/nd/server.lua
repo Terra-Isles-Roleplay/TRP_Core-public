@@ -3,20 +3,20 @@ local NDCore = exports["ND_Core"]
 
 -- EVENTS
 RegisterNetEvent("ND:MoneyChange", function(source, account, newAmount)
-    print(("Player %s money updated (%s): %s"):format(source, account, newAmount))
+    --print(("Player %s money updated (%s): %s"):format(source, account, newAmount))
 end)
 
 RegisterNetEvent("ND:characterUnloaded", function(source)
-    print("Character unloaded:", source)
+    --print("Character unloaded:", source)
 end)
 
 RegisterNetEvent("ND:characterLoaded", function(source,character)
     ensurePlayerHasPhone(character.source)
-    print("Character loaded:", source)
+    --print("Character loaded:", source)
 end)
 
 RegisterNetEvent("ND:updateCharacter", function(source, character)
-    print("Character updated:", source, json.encode(character))
+    --print("Character updated:", source, json.encode(character))
 end)
 
 -- FUNCTIONS
